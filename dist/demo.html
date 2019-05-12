@@ -1,0 +1,17 @@
+<meta charset="utf-8">
+<title>NMPlayer demo</title>
+<script src="https://unpkg.com/vue"></script>
+<script src="./NMPlayer.umd.js"></script>
+
+
+<div id="app">
+  <demo></demo>
+</div>
+
+<script>
+new Vue({
+  components: {
+    demo: NMPlayer
+  }
+}).$mount('#app')
+</script>

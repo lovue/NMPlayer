@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+  <title>NMPlayer</title>
+  <style>
+    *, *::after, *::before {
+      box-sizing: border-box;
+      max-height: 999999px;
+    }
+
+    html {
+      font-size: 62.5%;
+      -webkit-text-size-adjust: 100%;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      text-rendering: optimizeLegibility;
+      scroll-behavior: smooth;
+      line-height: 1.15;
+    }
+
+    body {
+      margin: 0;
+    }
+
+    .song {
+      margin: 100px auto 0;
+    }
+  </style>
+</head>
+<body>
+<noscript>
+  <strong>We're sorry but site doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
+</noscript>
+<div id="app">
+  <div class="song">
+    <span>1.mp3</span>
+    <button class="btn" @click="add(0)">添加</button>
+    <button class="btn" @click="play(0)">播放</button>
+  </div>
+  <v-nm-player ref="nmplayer" :audios="audios" :async-play="fetchAudioUrl" default-cover="/img/cover.png" unique="id"></v-nm-player>
+</div>
+<script src="https://unpkg.com/vue"></script>
+<script src="/js/NMPlayer.umd.min.js"></script>
+<script>
+  Vue.component(NMPlayer.name, NMPlayer)
+  new Vue({
+    data: {
+      audios: [],
+      list: [
+        {
+          name: '沙漠骆驼',
+          author: '展展与罗罗'
+        }
+      ]
+    },
+    methods: {
+      add(i) {
+        let newAudio = this.list[i]
+        for (let audio of this.audios) {
+          if (audio.id === newAudio.id) return
+        }
+        this.audios.push(Object.assign({}, newAudio))
+      },
+      play(i) {
+        this.$refs.nmplayer.playNewAudio(this.list[i])
+      },
+      async fetchAudioUrl(index) {
+        this.audios[index].url = '/audio/606149108.mp3'
+      }
+    }
+  }).$mount('#app')
+</script>
+</body>
+</html>
