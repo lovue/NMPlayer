@@ -1,11 +1,11 @@
 <template>
   <svg :class="`icon icon-${icon}`" :width="size || 20" :height="size || 20" @click="$emit('click')">
-    <use :xlink:href="`#icon-${icon}`"></use>
+    <use :xlink:href="`#nmp-icon-${icon}`"></use>
   </svg>
 </template>
 <script>
   export default {
-    name: 'nm-icon',
+    name: 'nmp-icon',
     props: {
       icon: String,
       size: String

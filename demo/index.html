@@ -25,7 +25,7 @@
     }
 
     .song {
-      margin-top: 100px;
+      margin: 100px auto 0;
     }
   </style>
 </head>
@@ -39,18 +39,27 @@
     <button class="btn" @click="add(0)">添加</button>
     <button class="btn" @click="play(0)">播放</button>
   </div>
-  <v-nm-player ref="nmplayer" :audios="audios" :async-play="fetchAudioUrl" default-cover="/img/cover.png"></v-nm-player>
+  <div class="song">
+    <span>1.mp3</span>
+    <button class="btn" @click="add(1)">添加</button>
+    <button class="btn" @click="play(1)">播放</button>
+  </div>
+  <v-nm-player ref="nmplayer" :audios="audios" :async-play="fetchAudioUrl" default-cover="./img/cover.png" unique="id"></v-nm-player>
 </div>
 <script src="https://unpkg.com/vue"></script>
-<!--<script src="/js/NMPlayer.umd.min.js"></script>-->
-<!-- built files will be auto injected -->
-<!--<script>
-  Vue.component(NMPlayer.name, NMPlayer)
+<script src="./js/NMplayer.min.js"></script>
+<script>
   new Vue({
     data: {
       audios: [],
       list: [
         {
+          id: 1,
+          name: '沙漠骆驼',
+          author: '展展与罗罗'
+        },
+        {
+          id: 2,
           name: '沙漠骆驼',
           author: '展展与罗罗'
         }
@@ -60,7 +69,7 @@
       add(i) {
         let newAudio = this.list[i]
         for (let audio of this.audios) {
-          if (audio.url === newAudio.url) return
+          if (audio.id === newAudio.id) return
         }
         this.audios.push(Object.assign({}, newAudio))
       },
@@ -68,10 +77,10 @@
         this.$refs.nmplayer.playNewAudio(this.list[i])
       },
       async fetchAudioUrl(index) {
-        this.audios[index].url = '/audio/606149108.mp3'
+        this.audios[index].url = './audio/606149108.mp3'
       }
     }
   }).$mount('#app')
-</script>-->
+</script>
 </body>
 </html>

@@ -12,7 +12,7 @@
 </template>
 <script>
   export default {
-    name: 'nm-progress',
+    name: 'nmp-progress',
     data() {
       return {
         fullWidth: 0,

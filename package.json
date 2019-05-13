@@ -3,43 +3,39 @@
   "version": "1.0.0",
   "author": "loliconer",
   "description": "A music player which imitates netease music.",
+  "module": "dist/NMPlayer.esm.js",
+  "unpkg": "dist/NMPlayer.min.js",
+  "jsdelivr": "dist/NMPlayer.min.js",
   "license": "MIT",
+  "repository": {
+    "url": "https://github.com/loliconer/NMPlayer.git",
+    "type": "git"
+  },
+  "files": [
+    "src",
+    "dist"
+  ],
   "scripts": {
-    "serve": "vue-cli-service serve --port 8089",
-    "buildDemo": "vue-cli-service build",
-    "build": "vue-cli-service build --target lib --name NMPlayer",
-    "lint": "vue-cli-service lint"
+    "serve": "rollup -c --watch",
+    "esm": "rollup -c --environment production,esm",
+    "js": "rollup -c --environment production",
+    "min": "terser dist/NMplayer.js -o dist/NMplayer.min.js -c",
+    "build": "npm run esm && npm run js && npm run min"
   },
   "devDependencies": {
-    "@vue/cli-plugin-babel": "^3.5.1",
-    "@vue/cli-service": "^3.5.1",
     "less": "^3.8.1",
     "less-loader": "^4.1.0",
+    "less-plugin-clean-css": "^1.5.1",
     "lovue": "^2.6.4",
+    "rollup": "^1.1.0",
+    "rollup-plugin-commonjs": "^9.3.4",
+    "rollup-plugin-less": "^0.1.5",
+    "rollup-plugin-livereload": "^0.6.0",
+    "rollup-plugin-node-resolve": "^4.2.4",
+    "rollup-plugin-serve": "^1.0.0",
+    "rollup-plugin-vue": "^4.6.1",
+    "terser": "^3.10.11",
     "vue-template-compiler": "^2.6.10"
-  },
-  "eslintConfig": {
-    "root": true,
-    "env": {
-      "es6": true,
-      "node": true
-    },
-    "extends": [
-      "plugin:vue/essential",
-      "eslint:recommended"
-    ],
-    "plugins": [
-      "html"
-    ],
-    "rules": {
-      "no-console": "off",
-      "no-unused-vars": "off",
-      "no-undef": "off",
-      "vue/require-v-for-key": "off"
-    },
-    "parserOptions": {
-      "parser": "babel-eslint"
-    }
   },
   "browserslist": [
     "> 1%",

@@ -2,18 +2,18 @@
   <div class="v-nm-player" :class="`pos-${pos}`">
     <div class="nm-cover" :style="`background-image: url(${currentAudio.cover || defaultCover})`">
       <!--<div class="icon-wrap">
-        <nm-icon icon="fangda" size="36"></nm-icon>
+        <nmp-icon icon="fangda" size="36"></nmp-icon>
       </div>-->
     </div>
     <div class="nm-act">
-      <div class="a-prev" @click="prev"><nm-icon icon="play-next" size="16"></nm-icon></div>
+      <div class="a-prev" @click="prev"><nmp-icon icon="play-next" size="16"></nmp-icon></div>
       <div class="a-play p-play" v-if="paused" @click="play">
-        <nm-icon icon="play" size="16"></nm-icon>
+        <nmp-icon icon="play" size="16"></nmp-icon>
       </div>
       <div class="a-play" v-else @click="pause">
-        <nm-icon icon="zanting" size="16"></nm-icon>
+        <nmp-icon icon="pause" size="16"></nmp-icon>
       </div>
-      <div class="a-next" @click="next"><nm-icon icon="play-next" size="16"></nm-icon></div>
+      <div class="a-next" @click="next"><nmp-icon icon="play-next" size="16"></nmp-icon></div>
     </div>
     <div class="nm-content">
       <div class="nm-info">
@@ -26,22 +26,22 @@
       </div>
       <div class="nm-audio">
         <audio :src="currentAudio.url" :preload="preload"></audio>
-        <nm-progress :played="playedRatio" :loaded="loadedRatio" decimal transition @click-bar="clickAudioBar"></nm-progress>
+        <nmp-progress :played="playedRatio" :loaded="loadedRatio" decimal transition @click-bar="clickAudioBar"></nmp-progress>
       </div>
     </div>
     <div class="nm-tools">
       <div class="t-play-mode">
-        <nm-icon :icon="playModeIcon" size="16" @click="changePlayMode"></nm-icon>
+        <nmp-icon :icon="playModeIcon" size="16" @click="changePlayMode"></nmp-icon>
       </div>
       <div class="t-volume">
-        <nm-icon icon="speaker" size="16" @click.native.stop="toggleShowVolume"></nm-icon>
+        <nmp-icon icon="speaker" size="16" @click.native.stop="toggleShowVolume"></nmp-icon>
         <div class="volume-wrap" @click.stop v-show="isShowVolumeSlider">
-          <nm-icon :icon="speakerIcon" size="16" @click="toggleMute"></nm-icon>
-          <nm-progress :played="volume" :loaded="0" :width="200" decimal draggable @click-bar="clickVolumeBar" @drag-bar="clickVolumeBar"></nm-progress>
+          <nmp-icon :icon="speakerIcon" size="16" @click="toggleMute"></nmp-icon>
+          <nmp-progress :played="volume" :loaded="0" :width="200" decimal draggable @click-bar="clickVolumeBar" @drag-bar="clickVolumeBar"></nmp-progress>
         </div>
       </div>
       <div class="t-sheet" @click.stop="toggleShowSheet" v-if="audios.length > 1">
-        <nm-icon icon="menu-fold" size="16"></nm-icon>
+        <nmp-icon icon="menu-fold" size="16"></nmp-icon>
         <span class="t-count">{{audios.length}}</span>
       </div>
     </div>
@@ -49,19 +49,19 @@
     <div class="nm-sheet" @click.stop v-show="isShowSheet">
       <div class="s-head">
         <span>播放列表</span>
-        <nm-icon icon="close" size="14" @click="isShowSheet = false"></nm-icon>
+        <nmp-icon icon="close" size="14" @click="isShowSheet = false"></nmp-icon>
       </div>
       <div class="s-body">
         <div class="s-row" :class="{focus: currentIndex === i}" @dblclick="currentIndex = i" v-for="(audio, i) of audios">
           <div class="s-cell">
-            <nm-icon icon="play" size="14" v-if="currentIndex === i"></nm-icon>
+            <nmp-icon icon="play" size="14" v-if="currentIndex === i"></nmp-icon>
           </div>
           <div class="s-cell cell-name">
             <span>{{audio.name}}</span>
           </div>
           <div class="s-cell">{{audio.author}}</div>
           <div class="s-cell">
-            <nm-icon icon="delete" size="14" @click="remove(i)"></nm-icon>
+            <nmp-icon icon="delete" size="14" @click="remove(i)"></nmp-icon>
           </div>
         </div>
       </div>
@@ -72,8 +72,8 @@
   import {isEmptyObject} from 'lovue/dist/utils.esm'
   import './js/iconfont'
   import './less/style.less'
-  import Icon from './components/Icon'
-  import Progress from './components/Progress'
+  import Icon from './components/Icon.vue'
+  import Progress from './components/Progress.vue'
   import {secondsToReadable} from './js/utils'
 
   export default {
