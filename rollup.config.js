@@ -11,9 +11,7 @@ let plugins = [
   commonjs(),
   less({
     insert: true,
-    option: {
-      strictMath: 'on'
-    }
+    output: false
   }),
   vue({
     template: {

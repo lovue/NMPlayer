@@ -3,7 +3,7 @@
 一个网易云音乐风格的音乐播放器。
 
 ### 截图
-<img src="./public/img/player.png">
+<img src="./demo/img/player.png">
 
 ### 使用
 ```html
