@@ -51,7 +51,7 @@
         <span>播放列表</span>
         <nmp-icon icon="close" size="14" @click="isShowSheet = false"></nmp-icon>
       </div>
-      <div class="s-body">
+      <div class="s-body" :style="`max-height: ${sheetHeight}px`">
         <div class="s-row" :class="{focus: currentIndex === i}" @dblclick="currentIndex = i" v-for="(audio, i) of audios">
           <div class="s-cell">
             <nmp-icon icon="play" size="14" v-if="currentIndex === i"></nmp-icon>
@@ -105,7 +105,8 @@
       unique: {
         type: String,
         'default': 'id'
-      }
+      },
+      sheetHeight: Number
     },
     computed: {
       playModeIcon() {

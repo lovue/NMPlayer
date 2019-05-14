@@ -44,14 +44,61 @@
     <button class="btn" @click="add(1)">添加</button>
     <button class="btn" @click="play(1)">播放</button>
   </div>
-  <v-nm-player ref="nmplayer" :audios="audios" :async-play="fetchAudioUrl" default-cover="./img/cover.png" unique="id"></v-nm-player>
+  <v-nm-player ref="nmplayer" :audios="audios" :async-play="fetchAudioUrl" default-cover="./img/cover.png" unique="id" :sheet-height="200"></v-nm-player>
 </div>
 <script src="https://unpkg.com/vue"></script>
 <script src="./js/NMplayer.min.js"></script>
 <script>
   new Vue({
     data: {
-      audios: [],
+      audios: [
+        {
+          id: 1,
+          name: '沙漠骆驼',
+          author: '展展与罗罗'
+        },
+        {
+          id: 2,
+          name: '沙漠骆驼',
+          author: '展展与罗罗'
+        }, {
+          id: 1,
+          name: '沙漠骆驼',
+          author: '展展与罗罗'
+        },
+        {
+          id: 2,
+          name: '沙漠骆驼',
+          author: '展展与罗罗'
+        }, {
+          id: 1,
+          name: '沙漠骆驼',
+          author: '展展与罗罗'
+        },
+        {
+          id: 2,
+          name: '沙漠骆驼',
+          author: '展展与罗罗'
+        }, {
+          id: 1,
+          name: '沙漠骆驼',
+          author: '展展与罗罗'
+        },
+        {
+          id: 2,
+          name: '沙漠骆驼',
+          author: '展展与罗罗'
+        }, {
+          id: 1,
+          name: '沙漠骆驼',
+          author: '展展与罗罗'
+        },
+        {
+          id: 2,
+          name: '沙漠骆驼',
+          author: '展展与罗罗'
+        }
+      ],
       list: [
         {
           id: 1,

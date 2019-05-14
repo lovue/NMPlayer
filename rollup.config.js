@@ -27,12 +27,12 @@ if (esm) {
 }
 
 if (!production) {
-  plugins.push(serve('public'))
+  plugins.push(serve('demo'))
   plugins.push(livereload({
-    watch: 'public',
+    watch: 'demo',
     delay: 100
   }))
-  file = 'public/js/NMPlayer.js'
+  file = 'demo/js/NMPlayer.js'
   format = 'iife'
 }
 
