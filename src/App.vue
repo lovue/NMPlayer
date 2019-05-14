@@ -59,7 +59,7 @@
           <div class="s-cell cell-name">
             <span>{{audio.name}}</span>
           </div>
-          <div class="s-cell">{{audio.author}}</div>
+          <div class="s-cell cell-author">{{audio.author}}</div>
           <div class="s-cell">
             <nmp-icon icon="delete" size="14" @click="remove(i)"></nmp-icon>
           </div>
