@@ -18,7 +18,9 @@
     <div class="nm-content">
       <div class="nm-info">
         <div class="i-l">
-          <span class="i-name">{{currentAudio.name}}</span> - <span class="i-author">{{currentAudio.author}}</span>
+          <template v-if="!currentAudio.name">
+            <span class="i-name">{{currentAudio.name}}</span> - <span class="i-author">{{currentAudio.author}}</span>
+          </template>
         </div>
         <div class="i-r">
           <span class="i-played">{{playedTime}}</span> / <span class="i-length">{{duration}}</span>
