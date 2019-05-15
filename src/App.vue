@@ -18,7 +18,7 @@
     <div class="nm-content">
       <div class="nm-info">
         <div class="i-l">
-          <template v-if="!currentAudio.name">
+          <template v-if="currentAudio.name">
             <span class="i-name">{{currentAudio.name}}</span> - <span class="i-author">{{currentAudio.author}}</span>
           </template>
         </div>
@@ -51,7 +51,10 @@
     <div class="nm-sheet" @click.stop v-show="isShowSheet">
       <div class="s-head">
         <span>播放列表</span>
-        <nmp-icon icon="close" size="14" @click="isShowSheet = false"></nmp-icon>
+        <div class="h-act">
+          <nmp-icon icon="delete" size="14" @click="clearSheet"></nmp-icon>
+          <nmp-icon icon="close" size="14" @click="isShowSheet = false"></nmp-icon>
+        </div>
       </div>
       <div class="s-body" :style="`max-height: ${sheetHeight}px`">
         <div class="s-row" :class="{focus: currentIndex === i}" @dblclick="currentIndex = i" v-for="(audio, i) of audios">
@@ -62,7 +65,7 @@
             <span>{{audio.name}}</span>
           </div>
           <div class="s-cell cell-author">{{audio.author}}</div>
-          <div class="s-cell">
+          <div class="s-cell cell-delete">
             <nmp-icon icon="delete" size="14" @click="remove(i)"></nmp-icon>
           </div>
         </div>
@@ -85,7 +88,7 @@
         audioElem: {},
         currentAudio: {},
         currentIndex: 0,
-        paused: false,
+        paused: true,
         duration: '00:00',
         playedTime: '00:00',
         playedRatio: 0,
@@ -95,7 +98,8 @@
         playMode: 0,
         speakerIcon: 'speaker',
         isShowVolumeSlider: false,
-        isShowSheet: false
+        isShowSheet: false,
+        canPlay: !this.audios.length
       }
     },
     props: {
@@ -156,14 +160,27 @@
         if (audio === undefined) return this.paused = true
         if (audio.url) {
           this.currentAudio = audio
-          this.play()
           return
         }
 
         if (this.asyncPlay) await this.asyncPlay(index)
 
         this.currentAudio = audio
-        this.play()
+      },
+      addAudio(audio) {
+        const { unique } = this
+        if (audio[unique] === undefined) return
+
+        if (this.audios.length === 0) {
+          this.audios.push(Object.assign({}, audio))
+          this.canPlay = false
+          this.updateCurrentAudio(0)
+        }
+
+        const index = this.audios.findIndex($audio => $audio[unique] === audio[unique])
+        if (index > -1) return
+
+        this.audios.push(Object.assign({}, audio))
       },
       async playNewAudio(audio) {
         const {unique} = this
@@ -180,18 +197,18 @@
       },
       async playIndex(index) {
         if (this.currentIndex === index) {
-          await this.updateCurrentAudio(index)
+          this.updateCurrentAudio(index)
         } else {
           this.currentIndex = index
         }
       },
       play() {
+        if (!this.canPlay) return this.canPlay = true
         if (isEmptyObject(this.currentAudio)) return
 
         const promise = this.audioElem.play()
         if (promise) {
           promise.catch(e => {
-            console.warn(e)
             if (e.name === 'NotAllowedError') this.pause()
           })
         }
@@ -252,18 +269,26 @@
         if (this.currentIndex === i) this.next()
         this.audios.splice(i, 1)
         if (this.audios.length <= 1) this.isShowSheet = false
+      },
+      clearSheet() {
+        this.audios.splice(0, this.audios.length)
+        this.currentAudio = {}
+        this.paused = true
+        this.duration = '00:00'
+        this.playedTime = '00:00'
+        this.playedRatio = 0
+        this.audioElem.load()
+        this.isShowSheet = false
       }
     },
-    created() {
-      this.updateCurrentAudio(this.currentIndex)
+    mounted() {
+      this.init()
 
+      this.updateCurrentAudio(this.currentIndex)
       window.addEventListener('click', () => {
         this.isShowSheet = false
         this.isShowVolumeSlider = false
       })
-    },
-    mounted() {
-      this.init()
     }
   }
 </script>

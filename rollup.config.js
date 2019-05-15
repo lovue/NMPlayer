@@ -27,7 +27,7 @@ if (esm) {
 }
 
 if (!production) {
-  plugins.push(serve('demo'))
+  // plugins.push(serve('demo'))
   plugins.push(livereload({
     watch: 'demo',
     delay: 100

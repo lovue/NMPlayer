@@ -19,7 +19,7 @@
     "serve": "rollup -c --watch",
     "esm": "rollup -c --environment production,esm",
     "js": "rollup -c --environment production",
-    "min": "terser dist/NMplayer.js -o dist/NMplayer.min.js -c",
+    "min": "terser dist/NMPlayer.js -o dist/NMPlayer.min.js -c",
     "build": "npm run esm && npm run js && npm run min"
   },
   "devDependencies": {

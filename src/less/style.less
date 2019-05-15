@@ -229,6 +229,15 @@ svg {
       font-size: 1.4rem;
       border-bottom: 1px solid var(--border-color);
       padding: 0 var(--2unit) 0 calc(var(--unit) + 24px);
+
+      .h-act {
+        display: flex;
+        align-items: center;
+
+        .icon-delete {
+          margin-right: 16px;
+        }
+      }
     }
 
     .s-body {
@@ -247,9 +256,21 @@ svg {
         &:nth-child(even) {
           background-color: var(--bg-color);
         }
+
+        &:hover {
+          .cell-delete {
+            .icon-delete {
+              display: inline;
+            }
+          }
+        }
       }
 
       .s-cell {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+
         &:nth-child(1) {
           width: 24px;
         }
@@ -263,11 +284,20 @@ svg {
         }
 
         &.cell-name {
+          padding-right: 8px;
           font-size: 1.4rem;
         }
 
         &.cell-author {
           font-size: 1.2rem;
+        }
+
+        &.cell-delete {
+          width: 14px;
+
+          .icon-delete {
+            display: none;
+          }
         }
       }
     }
