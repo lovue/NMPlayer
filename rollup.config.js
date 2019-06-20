@@ -3,7 +3,7 @@ import resolve from 'rollup-plugin-node-resolve'
 import commonjs from 'rollup-plugin-commonjs'
 import less from 'rollup-plugin-less'
 
-const esm = process.env.esm
+const esm = process.env.esm, browser = process.env.browser
 let plugins = [
   resolve(),
   commonjs(),
@@ -16,7 +16,11 @@ let plugins = [
       isProduction: true
     }
   })
-], file = 'dist/NMPlayer.js', format = 'iife', name = 'NMPlayer'
+], file = 'demo/js/NMPlayer.js', format = 'iife', name = 'NMPlayer'
+
+if (browser) {
+  file = 'dist/NMPlayer.js'
+}
 
 if (esm) {
   format = 'esm'

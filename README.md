@@ -7,7 +7,7 @@
 
 ### 使用
 ```html
-<v-nm-player ref="nmplayer" pos="top" :audios="audios" :async-play="fetchAudioUrl" default-cover="./img/cover.png" unique="id" :sheet-height="200"></v-nm-player>
+<v-nm-player ref="nmplayer" pos="top" :audios="audios" :async-play="fetchAudioUrl" default-cover="./img/cover.png" unique="id" :sheet-height="200" :default-play-mode="0" :default-volume="0.75"></v-nm-player>
 
 <script src="https://unpkg.com/vue"></script>
 <script src="./js/NMplayer.min.js"></script>
@@ -18,6 +18,8 @@
   // default-cover：当前没有正在播放的歌曲时显示的封面图
   // unique：区分每个audio对象的属性值，默认为：id
   // sheet-height: 歌单列表最大高度
+  // default-play-mode: 默认播放模式，值：0(列表循环)，1(单曲循环), 2(随机播放)
+  // default-volume: 默认音量，小数
   
   new Vue({
     data: {

@@ -112,7 +112,9 @@
         type: String,
         'default': 'id'
       },
-      sheetHeight: Number
+      sheetHeight: Number,
+      defaultPlayMode: Number,
+      defaultVolume: Number
     },
     computed: {
       playModeIcon() {
@@ -129,6 +131,8 @@
     methods: {
       init() {
         const audio = this.$el.querySelector('audio')
+        this.defaultVolume && (audio.volume = this.defaultVolume)
+
         this.audioElem = audio
         this.volume = audio.volume
 
@@ -280,6 +284,9 @@
         this.audioElem.load()
         this.isShowSheet = false
       }
+    },
+    created() {
+      this.defaultPlayMode && (this.playMode = this.defaultPlayMode)
     },
     mounted() {
       this.init()

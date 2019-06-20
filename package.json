@@ -18,7 +18,7 @@
   "scripts": {
     "serve": "rollup -c --watch",
     "esm": "rollup -c --environment esm",
-    "js": "rollup -c --environment",
+    "js": "rollup -c --environment browser",
     "min": "terser dist/NMPlayer.js -o dist/NMPlayer.min.js -c",
     "build": "npm run esm && npm run js && npm run min"
   },
