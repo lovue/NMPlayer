@@ -1,6 +1,6 @@
 {
   "name": "nmplayer",
-  "version": "1.2.0",
+  "version": "1.3.0",
   "author": "loliconer",
   "description": "A music player which imitates netease music.",
   "module": "dist/NMPlayer.esm.js",
