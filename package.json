@@ -23,21 +23,20 @@
     "build": "npm run esm && npm run js && npm run min"
   },
   "devDependencies": {
-    "less": "^3.8.1",
-    "less-loader": "^4.1.0",
-    "lovue": "^2.6.4",
-    "rollup": "^1.1.0",
-    "rollup-plugin-commonjs": "^9.3.4",
+    "less": "^3.10.3",
+    "less-loader": "^5.0.0",
+    "lovue": "^3.1.1",
+    "rollup": "^1.20.1",
+    "rollup-plugin-commonjs": "^10.0.2",
     "rollup-plugin-less": "^1.1.2",
-    "rollup-plugin-node-resolve": "^4.2.4",
-    "rollup-plugin-vue": "^4.6.1",
-    "terser": "^3.10.11",
+    "rollup-plugin-node-resolve": "^5.2.0",
+    "rollup-plugin-vue": "^5.0.1",
+    "terser": "^4.2.0",
     "vue-template-compiler": "^2.6.10"
   },
   "browserslist": [
-    "> 1%",
-    "last 2 versions",
-    "not ie > 0",
-    "not ie_mob > 0"
+    "Chrome >= 70",
+    "Firefox >= 65",
+    "Safari >= 11"
   ]
 }
