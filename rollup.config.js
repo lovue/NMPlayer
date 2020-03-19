@@ -1,6 +1,6 @@
 import vue from 'rollup-plugin-vue'
-import resolve from 'rollup-plugin-node-resolve'
-import commonjs from 'rollup-plugin-commonjs'
+import resolve from '@rollup/plugin-node-resolve'
+import commonjs from '@rollup/plugin-commonjs'
 import less from 'rollup-plugin-less'
 
 const esm = process.env.esm, browser = process.env.browser
