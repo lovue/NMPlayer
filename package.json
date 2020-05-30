@@ -23,10 +23,9 @@
     "build": "npm run esm && npm run js && npm run min"
   },
   "devDependencies": {
-    "@rollup/plugin-commonjs": "^11.0.2",
-    "@rollup/plugin-node-resolve": "^7.1.1",
-    "less": "^3.11.1",
-    "less-loader": "^5.0.0",
+    "@rollup/plugin-commonjs": "^12.0.0",
+    "@rollup/plugin-node-resolve": "^8.0.0",
+    "less-loader": "^6.1.0",
     "lovue": "^3.1.2",
     "rollup": "^2.1.0",
     "rollup-plugin-less": "^1.1.2",
