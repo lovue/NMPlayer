@@ -1,0 +1,13 @@
+{
+  "extends": [
+    "stylelint-config-standard",
+    "stylelint-config-html/vue"
+  ],
+  "customSyntax": "postcss-html",
+  "rules": {
+    "selector-class-pattern": "^[a-z][a-z0-9_-]*$",
+    "custom-property-pattern": "^([a-z0-9]+)(-[a-z0-9]+)*$",
+    "selector-list-comma-newline-after": null,
+    "no-descending-specificity": null
+  }
+}
