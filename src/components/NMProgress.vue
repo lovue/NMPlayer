@@ -62,7 +62,7 @@ function dragEnd () {
 }
 
 function dragging (ev: MouseEvent) {
-  if (dragFlag.value) return
+  if (!dragFlag.value) return
 
   const deltaX = ev.pageX - startX.value
   startX.value = ev.pageX
@@ -101,7 +101,6 @@ function dragging (ev: MouseEvent) {
   }
 
   .layer-2, .layer-3 {
-    transition: width .2s;
     position: absolute;
     top: 0;
     width: 0;

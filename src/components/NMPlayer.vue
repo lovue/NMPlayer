@@ -1,11 +1,10 @@
 <script setup lang="ts">
 import { ref, computed, watch, onMounted, onUnmounted } from 'vue'
 import NMProgress from './NMProgress.vue'
-import { isEmptyObject, secondsToReadable } from '../js/utils'
+import { isEmptyObject, secondsToReadable } from '../utils'
 
 export interface Audio {
-  url: string
-  id?: string
+  [key: string]: string | number
 }
 
 const props = withDefaults(defineProps<{
@@ -261,11 +260,7 @@ defineExpose({
 
 <template>
   <div class="nm-player" :class="`pos-${position}`">
-    <div class="nm-player__cover" :style="`background-image: url(${currentAudio.cover || defaultCover})`">
-      <!--<div class="icon-wrap">
-        <nmp-icon icon="fangda" size="36"></nmp-icon>
-      </div>-->
-    </div>
+    <div class="nm-player__cover" :style="`background-image: url(${currentAudio.cover || defaultCover})`" />
     <div class="nm-player__actions">
       <div class="action-prev" @click="prev">
         <LvIcon icon="play-next" prefix="nmp" :size="16" />
@@ -303,7 +298,7 @@ defineExpose({
     </div>
     <div class="nm-player__tools">
       <div class="tool-play-mode">
-        <LvIcon :icon="playModeIcon" prefix="nmp" :size="16" @click="changePlayMode" />
+        <LvIcon :icon="`play-${playModeIcon}`" prefix="nmp" :size="16" @click="changePlayMode" />
       </div>
       <div class="tool-volume">
         <LvIcon icon="speaker" prefix="nmp" :size="16" @click.stop="toggleShowVolume" />
@@ -337,7 +332,7 @@ defineExpose({
       <div class="sheet-body" :style="`max-height: ${sheetHeight}px`">
         <div
           class="sheet-row"
-          :class="{focus: currentIndex === i}"
+          :class="{'status--focus': currentIndex === i}"
           v-for="(audio, i) of audios"
           :key="`row-${i}`"
           @dblclick="currentIndex = i"

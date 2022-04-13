@@ -1,3 +1,13 @@
+svg {
+  color: inherit;
+  vertical-align: middle;
+  /* 通过设置 color 来改变 SVG 的颜色/fill */
+  fill: currentColor;
+  /* path 和 stroke 溢出 viewBox 部分在 IE 下会显示
+     normalize.css 中也包含这行 */
+  overflow: hidden;
+}
+
 .nm-player {
   --main-color: #222;
   --theme-color: #DF3B3B;
@@ -20,230 +30,6 @@
   align-items: center;
   border-top: 1px solid var(--border-color);
 
-  .nm-cover {
-    position: relative;
-    width: 60px;
-    height: 100%;
-    background-color: var(--bg-color);
-    background-size: cover;
-    margin-right: var(--3unit);
-
-    .icon-wrap {
-      display: none;
-      width: 60px;
-      height: 60px;
-      background-color: rgba(0, 0, 0, .5);
-      padding: 12px;
-
-      .icon-fangda {
-        color: var(--white);
-      }
-    }
-
-    &:hover {
-      .icon-wrap {
-        display: block;
-        position: absolute;
-      }
-    }
-  }
-
-  .nm-act {
-    display: flex;
-    align-items: center;
-    margin-right: var(--3unit);
-
-    .icon {
-      color: var(--white);
-    }
-
-    .a-prev, .a-play, .a-next {
-      background-color: var(--theme-color);
-      border-radius: 50%;
-      padding: 6px;
-    }
-
-    .a-prev {
-      .icon-play-next {
-        transform: rotateY(180deg);
-      }
-    }
-
-    .a-play {
-      padding: 8px;
-      margin: 0 var(--3unit);
-    }
-
-    .p-play {
-      padding-left: 9px;
-      padding-right: 7px;
-    }
-  }
-
-  .nm-content {
-    flex: 1;
-    margin-right: var(--3unit);
-
-    .nm-info {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: var(--unit);
-      font-size: 1.2rem;
-
-      .i-author {
-        color: var(--second-color);
-      }
-    }
-
-    .nm-progress {
-      padding: 4px 0;
-    }
-  }
-
-  .nm-tools {
-    display: flex;
-    align-items: center;
-    padding-right: var(--3unit);
-
-    .t-volume {
-      position: relative;
-      margin-left: var(--3unit);
-
-      .volume-wrap {
-        position: absolute;
-        top: -70px;
-        right: 0;
-        user-select: none;
-        display: flex;
-        align-items: center;
-        padding: var(--2unit);
-        background-color: var(--white);
-        border: 1px solid var(--border-color);
-
-        .nm-progress {
-          width: 200px;
-          padding: 4px 0;
-          margin-left: var(--unit);
-        }
-      }
-    }
-
-    .t-sheet {
-      margin-left: var(--3unit);
-      display: flex;
-      align-items: center;
-      cursor: default;
-
-      .t-count {
-        padding: 2px 6px;
-        background-color: var(--second-color);
-        color: var(--white);
-        font-size: 1.2rem;
-        margin-left: 4px;
-        border-radius: 8px;
-      }
-    }
-  }
-
-  .icon-refresh {
-    &.loading {
-      animation: rotate-reverse 2s linear infinite;
-    }
-  }
-
-
-
-  .nm-sheet {
-    position: absolute;
-    right: 0;
-    bottom: 50px;
-    background-color: var(--white);
-    border: 1px solid var(--border-color);
-    border-right: none;
-
-    .s-head {
-      height: 40px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      font-size: 1.4rem;
-      border-bottom: 1px solid var(--border-color);
-      padding: 0 var(--2unit) 0 calc(var(--unit) + 24px);
-
-      .h-act {
-        display: flex;
-        align-items: center;
-
-        .icon-delete {
-          margin-right: 16px;
-        }
-      }
-    }
-
-    .s-body {
-      overflow-y: auto;
-
-      .s-row {
-        height: 40px;
-        display: flex;
-        align-items: center;
-        padding: 0 var(--2unit) 0 var(--unit);
-
-        &.focus {
-          color: var(--theme-color);
-        }
-
-        &:nth-child(even) {
-          background-color: var(--bg-color);
-        }
-
-        &:hover {
-          .cell-delete {
-            .icon-delete {
-              display: inline;
-            }
-          }
-        }
-      }
-
-      .s-cell {
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-
-        &:nth-child(1) {
-          width: 24px;
-        }
-
-        &:nth-child(2) {
-          width: 200px;
-        }
-
-        &:nth-child(3) {
-          width: 100px;
-        }
-
-        &.cell-name {
-          padding-right: 8px;
-          font-size: 1.4rem;
-        }
-
-        &.cell-author {
-          font-size: 1.2rem;
-        }
-
-        &.cell-delete {
-          width: 14px;
-
-          .icon-delete {
-            display: none;
-          }
-        }
-      }
-    }
-  }
-
   &.pos-top {
     top: 0;
     bottom: unset;
@@ -261,6 +47,205 @@
     .nm-sheet {
       bottom: unset;
       top: 40px;
+    }
+  }
+}
+
+.nm-player__cover {
+  position: relative;
+  width: 60px;
+  height: 100%;
+  background-color: var(--bg-color);
+  background-size: cover;
+  margin-right: var(--3unit);
+}
+
+.nm-player__actions {
+  display: flex;
+  align-items: center;
+  margin-right: var(--3unit);
+  font-size: 0;
+
+  .lv-icon {
+    color: var(--white);
+  }
+
+  .action-prev, .action-play, .action-next {
+    background-color: var(--theme-color);
+    border-radius: 50%;
+    padding: 6px;
+  }
+
+  .action-prev {
+    .lv-nmp-icon-play-next {
+      transform: rotateY(180deg);
+    }
+  }
+
+  .action-play {
+    padding: 8px;
+    margin: 0 var(--3unit);
+  }
+
+  .p-play {
+    padding-left: 9px;
+    padding-right: 7px;
+  }
+}
+
+.nm-player__content {
+  flex: 1;
+  margin-right: var(--3unit);
+
+  .nm-progress {
+    padding: 4px 0;
+  }
+}
+
+.nm-player__info {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--unit);
+  font-size: 1.2rem;
+
+  .info-author {
+    color: var(--second-color);
+  }
+}
+
+.nm-player__tools {
+  display: flex;
+  align-items: center;
+  padding-right: var(--3unit);
+
+  .tool-volume {
+    position: relative;
+    margin-left: var(--3unit);
+
+    .volume-wrap {
+      position: absolute;
+      top: -70px;
+      right: 0;
+      user-select: none;
+      display: flex;
+      align-items: center;
+      padding: var(--2unit);
+      background-color: var(--white);
+      border: 1px solid var(--border-color);
+
+      .nm-progress {
+        width: 200px;
+        padding: 4px 0;
+        margin-left: var(--unit);
+      }
+    }
+  }
+
+  .tool-sheet {
+    margin-left: var(--3unit);
+    display: flex;
+    align-items: center;
+    cursor: default;
+  }
+
+  .tool-count {
+    padding: 2px 6px;
+    background-color: var(--second-color);
+    color: var(--white);
+    font-size: 1.2rem;
+    margin-left: 4px;
+    border-radius: 8px;
+  }
+}
+
+.nm-player__sheet {
+  position: absolute;
+  right: 0;
+  bottom: 50px;
+  background-color: var(--white);
+  border: 1px solid var(--border-color);
+  border-right: none;
+
+  .sheet-head {
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 1.4rem;
+    border-bottom: 1px solid var(--border-color);
+    padding: 0 var(--2unit) 0 calc(var(--unit) + 24px);
+  }
+
+  .sheet-actions {
+    display: flex;
+    align-items: center;
+
+    .lv-nmp-icon-delete {
+      margin-right: 16px;
+    }
+  }
+
+  .sheet-body {
+    overflow-y: auto;
+  }
+
+  .sheet-row {
+    height: 40px;
+    display: flex;
+    align-items: center;
+    padding: 0 var(--2unit) 0 var(--unit);
+    user-select: none;
+
+    &.status--focus {
+      color: var(--theme-color);
+    }
+
+    &:nth-child(even) {
+      background-color: var(--bg-color);
+    }
+
+    &:hover {
+      .sheet-cell.cell-delete {
+        .lv-nmp-icon-delete {
+          display: inline;
+        }
+      }
+    }
+  }
+
+  .sheet-cell {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+
+    &:nth-child(1) {
+      width: 24px;
+    }
+
+    &:nth-child(2) {
+      width: 200px;
+    }
+
+    &:nth-child(3) {
+      width: 100px;
+    }
+
+    &.cell-name {
+      padding-right: 8px;
+      font-size: 1.4rem;
+    }
+
+    &.cell-author {
+      font-size: 1.2rem;
+    }
+
+    &.cell-delete {
+      width: 14px;
+
+      .lv-nmp-icon-delete {
+        display: none;
+      }
     }
   }
 }
